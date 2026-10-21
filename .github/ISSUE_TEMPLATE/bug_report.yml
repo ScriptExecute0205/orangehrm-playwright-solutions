@@ -1,0 +1,73 @@
+name: Bug report
+description: Report a problem in the setup, the framework or a test
+title: "[Bug]: short title"
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for problems in the automation project: setup, framework code, tests or scenario steps.
+        For questions, use Discussions. Defects in the OrangeHRM application itself are not tracked here.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Where do you think the problem is?
+      options:
+        - Setup
+        - Framework code
+        - Test code
+        - Scenario steps
+        - Possible application behaviour
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What is the problem?
+      description: Say what happened in one or two sentences.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect to happen?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to repeat the problem
+      placeholder: |
+        1. Run npm install
+        2. Run npx playwright test
+        3. See the error
+    validations:
+      required: true
+  - type: textarea
+    id: error
+    attributes:
+      label: Error message
+      description: Copy and paste the full error. Please do not type it again.
+      render: shell
+  - type: dropdown
+    id: os
+    attributes:
+      label: Your computer
+      options:
+        - Mac
+        - Windows
+        - Linux
+    validations:
+      required: true
+  - type: input
+    id: node-version
+    attributes:
+      label: Node version
+      description: Run node --version in the terminal and paste the result.
+    validations:
+      required: true
+  - type: textarea
+    id: attachments
+    attributes:
+      label: Screenshot or trace file (optional)
+      description: Drag the file into this box.

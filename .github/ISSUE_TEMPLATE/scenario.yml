@@ -1,0 +1,65 @@
+name: Test scenario
+description: One automation scenario for a student to pick up
+title: "[PIM-00]: short title"
+labels: ["scenario"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        One issue is one test scenario. Fill in every field.
+  - type: input
+    id: scenario-id
+    attributes:
+      label: Scenario ID
+      description: Module short name and a number
+      placeholder: PIM-03
+    validations:
+      required: true
+  - type: dropdown
+    id: module
+    attributes:
+      label: Module
+      options:
+        - Login
+        - Admin
+        - PIM
+        - Leave
+    validations:
+      required: true
+  - type: dropdown
+    id: difficulty
+    attributes:
+      label: Difficulty
+      options:
+        - Easy
+        - Medium
+        - Hard
+    validations:
+      required: true
+  - type: dropdown
+    id: tag
+    attributes:
+      label: Test tag
+      options:
+        - "@smoke"
+        - "@regression"
+        - "@negative"
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps
+      placeholder: |
+        1. Open the login page
+        2. Enter a valid username and password
+        3. Click Login
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected result
+      placeholder: The dashboard page opens
+    validations:
+      required: true

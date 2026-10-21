@@ -1,0 +1,14 @@
+[
+  {
+    "id": "LOGIN-02",
+    "title": "wrong password shows an error",
+    "username": "Admin",
+    "password": "wrong-password"
+  },
+  {
+    "id": "LOGIN-03",
+    "title": "wrong username shows an error",
+    "username": "WrongUser",
+    "password": "admin123"
+  }
+]
