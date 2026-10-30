@@ -4,6 +4,7 @@ import { DashboardPage } from '@pages/dashboard.page';
 import { SidebarComponent } from '@components/sidebar.component';
 import { TopBarComponent } from '@components/topbar.component';
 import { ToastComponent } from '@components/toast.component';
+import { AddEmployeePage } from '@pages/add-employee.page';
 
 type Fixtures = {
   loginPage: LoginPage;
@@ -11,6 +12,7 @@ type Fixtures = {
   sidebar: SidebarComponent;
   topBar: TopBarComponent;
   toast: ToastComponent;
+  addEmployeePage: AddEmployeePage;
 };
 
 export const test = base.extend<Fixtures>({
@@ -28,6 +30,9 @@ export const test = base.extend<Fixtures>({
   },
   toast: async ({ page }, use) => {
     await use(new ToastComponent(page));
+  },
+  addEmployeePage : async ({ page }, use) => {
+    await use(new AddEmployeePage(page));
   },
 });
 
