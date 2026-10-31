@@ -16,19 +16,19 @@
 
 ## Naming conventions
 
-| What | Rule | Example |
-|---|---|---|
-| Files | lower case with dashes and a type ending | `login.page.ts`, `sidebar.component.ts`, `employee.factory.ts`, `role.enum.ts`, `date.helper.ts` |
-| Test files | `<feature>.spec.ts` inside `tests/e2e/<module>/` | `tests/e2e/pim/add-employee.spec.ts` |
-| Classes | PascalCase with a type ending | `LoginPage`, `SidebarComponent` |
-| Locators | nouns | `usernameInput`, `loginButton`, `errorMessage` |
-| Actions | verbs | `login()`, `addEmployee()`, `searchByName()` |
-| Variables and functions | camelCase | `createEmployee` |
-| Constants | UPPER case object | `ROUTES`, `MESSAGES` |
-| Enums | PascalCase, PascalCase members | `Role.Admin`, `Menu.Pim` |
-| Test title | `<ID> <what happens> @tag` | `PIM-03 search employee by name @smoke` |
-| Branch | `feature/<module>-<id>-<short-name>` | `feature/pim-03-search-employee` |
-| Commit | `type(scope): message` | `test(pim): add employee search scenario` |
+| What                    | Rule                                             | Example                                                                                          |
+| ----------------------- | ------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| Files                   | lower case with dashes and a type ending         | `login.page.ts`, `sidebar.component.ts`, `employee.factory.ts`, `role.enum.ts`, `date.helper.ts` |
+| Test files              | `<feature>.spec.ts` inside `tests/e2e/<module>/` | `tests/e2e/pim/add-employee.spec.ts`                                                             |
+| Classes                 | PascalCase with a type ending                    | `LoginPage`, `SidebarComponent`                                                                  |
+| Locators                | nouns                                            | `usernameInput`, `loginButton`, `errorMessage`                                                   |
+| Actions                 | verbs                                            | `login()`, `addEmployee()`, `searchByName()`                                                     |
+| Variables and functions | camelCase                                        | `createEmployee`                                                                                 |
+| Constants               | UPPER case object                                | `ROUTES`, `MESSAGES`                                                                             |
+| Enums                   | PascalCase, PascalCase members                   | `Role.Admin`, `Menu.Pim`                                                                         |
+| Test title              | `<ID> <what happens> @tag`                       | `PIM-03 search employee by name @smoke`                                                          |
+| Branch                  | `feature/<module>-<id>-<short-name>`             | `feature/pim-03-search-employee`                                                                 |
+| Commit                  | `type(scope): message`                           | `test(pim): add employee search scenario`                                                        |
 
 ## How to automate a scenario (start here)
 
