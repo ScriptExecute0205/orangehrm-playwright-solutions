@@ -32,6 +32,7 @@ export default [
       'playwright/no-force-option': 'error',
       'playwright/expect-expect': 'error',
       '@typescript-eslint/no-floating-promises': 'error',
+      'no-console': 'error',
     },
   },
   prettier,

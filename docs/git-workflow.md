@@ -40,4 +40,3 @@ Follow these steps for every scenario. Do not skip any step.
 - **Committed the wrong file**: ask for help before you push.
 
 ## Screenshots
-

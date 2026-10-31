@@ -2,10 +2,6 @@ import { test, expect } from '@fixtures/index';
 import { env } from '@config/environment';
 import { Role } from '@enums/role.enum';
 import { MESSAGES } from '@constants/messages';
-import { readJson } from '@utils/file.helper';
-import { InvalidLogin } from '@app-types/login.types';
-
-const invalidLogins = readJson<InvalidLogin[]>('src/data/static/invalid-logins.json');
 
 test.describe('Login', () => {
   test('LOGIN-01 valid login opens the dashboard @smoke', async ({
@@ -20,15 +16,17 @@ test.describe('Login', () => {
     await expect(dashboardPage.heading).toBeVisible();
   });
 
-  for (const { id, title, username, password } of invalidLogins) {
-    test(`${id} ${title} @regression @negative`, async ({ loginPage }) => {
-      await loginPage.goto();
-      await loginPage.login({ username, password });
+  test('LOGIN-02 wrong password shows an error @regression @negative', async ({ loginPage }) => {
+    await loginPage.goto();
+    await loginPage.login({ username: 'Admin', password: 'wrong-password' });
+    await expect(loginPage.errorMessage).toHaveText(MESSAGES.invalidCredentials);
+  });
 
-      await expect(loginPage.errorMessage).toHaveText(MESSAGES.invalidCredentials);
-    });
-  }
-
+  test('LOGIN-03 wrong username shows an error @regression @negative', async ({ loginPage }) => {
+    await loginPage.goto();
+    await loginPage.login({ username: 'WrongUser', password: 'admin123' });
+    await expect(loginPage.errorMessage).toHaveText(MESSAGES.invalidCredentials);
+  });
   test('LOGIN-04 empty fields show required messages @regression @negative', async ({
     loginPage,
   }) => {

@@ -1,7 +1,7 @@
 name: Test scenario
 description: One automation scenario for a student to pick up
-title: "[PIM-00]: short title"
-labels: ["scenario"]
+title: '[PIM-00]: short title'
+labels: ['scenario']
 body:
   - type: markdown
     attributes:
@@ -41,9 +41,9 @@ body:
     attributes:
       label: Test tag
       options:
-        - "@smoke"
-        - "@regression"
-        - "@negative"
+        - '@smoke'
+        - '@regression'
+        - '@negative'
     validations:
       required: true
   - type: textarea
