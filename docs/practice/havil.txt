@@ -1,0 +1,1 @@
+This is the practice for git commands on havils machine
