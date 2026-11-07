@@ -17,19 +17,25 @@
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "allure:generate": "allure generate ./allure-results -o ./allure-report --clean",
+    "allure:open": "allure open ./allure-report",
+    "allure:report": "npm run allure:generate && npm run allure:open",
+    "clean": "rimraf allure-results allure-report playwright-report test-results blob-report"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@faker-js/faker": "^10.6.0",
     "@playwright/test": "^1.64.1",
     "@types/node": "^26.6.5",
+    "allure": "^3.33.0",
     "allure-playwright": "^3.14.0",
     "dotenv": "^18.0.8",
     "eslint": "^10.13.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-playwright": "^2.12.1",
     "prettier": "^3.9.10",
+    "rimraf": "^6.1.4",
     "typescript": "~6.0.0",
     "typescript-eslint": "^8.72.0"
   }

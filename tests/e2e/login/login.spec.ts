@@ -27,6 +27,7 @@ test.describe('Login', () => {
     await loginPage.login({ username: 'WrongUser', password: 'admin123' });
     await expect(loginPage.errorMessage).toHaveText(MESSAGES.invalidCredentials);
   });
+
   test('LOGIN-04 empty fields show required messages @regression @negative', async ({
     loginPage,
   }) => {
