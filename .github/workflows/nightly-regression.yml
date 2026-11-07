@@ -1,0 +1,96 @@
+name: Nightly regression
+
+on:
+  schedule:
+    - cron: '30 20 * * *'
+  workflow_dispatch:
+    inputs:
+      env:
+        description: Environment
+        type: choice
+        default: qa
+        options: [qa, dev, staging]
+      grep:
+        description: Tag to run
+        default: '@regression'
+
+jobs:
+  test:
+    name: Shard ${{ matrix.shard }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2]
+    env:
+      SHARDED: 'true'
+      TEST_ENV: ${{ inputs.env || 'qa' }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npx playwright test --grep "${{ inputs.grep || '@regression' }}" --shard=${{ matrix.shard }}/2
+      - uses: actions/upload-artifact@v5
+        if: ${{ !cancelled() }}
+        with:
+          name: blob-report-${{ matrix.shard }}
+          path: blob-report
+          retention-days: 7
+      - uses: actions/upload-artifact@v5
+        if: ${{ !cancelled() }}
+        with:
+          name: allure-results-${{ matrix.shard }}
+          path: allure-results
+          retention-days: 7
+
+  report:
+    name: Merge reports
+    needs: test
+    if: ${{ !cancelled() }}
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - uses: actions/download-artifact@v5
+        with:
+          pattern: blob-report-*
+          path: all-blob-reports
+          merge-multiple: true
+      - run: npx playwright merge-reports --reporter html ./all-blob-reports
+      - uses: actions/upload-artifact@v5
+        with:
+          name: playwright-report
+          path: playwright-report
+          retention-days: 14
+      - uses: actions/download-artifact@v5
+        with:
+          pattern: allure-results-*
+          path: allure-results-all
+          merge-multiple: true
+      - run: npx allure generate ./allure-results-all -o ./allure-report --clean
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: allure-report
+
+  deploy:
+    name: Publish the Allure report
+    needs: report
+    runs-on: ubuntu-24.04
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,7 +1,17 @@
-import { defineConfig, devices } from '@playwright/test';
+import { defineConfig, devices, ReporterDescription } from '@playwright/test';
 import { env } from './config/environment';
 import { AUTH_FILES } from './src/constants/auth';
 import { TIMEOUTS } from './src/constants/timeouts';
+
+const sharded = process.env.SHARDED === 'true';
+const reporters: ReporterDescription[] = sharded
+  ? [['blob'], ['allure-playwright', { resultsDir: 'allure-results' }]]
+  : [
+      ['list'],
+      ['html', { outputFolder: 'playwright-report', open: 'never' }],
+      ['junit', { outputFile: 'reports/junit/results.xml' }],
+      ['allure-playwright', { resultsDir: 'allure-results' }],
+    ];
 
 export default defineConfig({
   testDir: './tests',
@@ -13,12 +23,8 @@ export default defineConfig({
   workers: process.env.CI ? 2 : undefined,
   timeout: TIMEOUTS.test,
   expect: { timeout: TIMEOUTS.expect },
-  reporter: [
-    ['list'],
-    ['html', { outputFolder: 'playwright-report', open: 'never' }],
-    ['junit', { outputFile: 'reports/junit/results.xml' }],
-    ['allure-playwright', { resultsDir: 'allure-results' }],
-  ],
+  reporter: reporters,
+
   use: {
     baseURL: env.baseUrl,
     trace: 'on-first-retry',
