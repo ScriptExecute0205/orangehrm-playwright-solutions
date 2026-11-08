@@ -40,6 +40,8 @@ jobs:
       - run: npm ci
       - run: npx playwright install --with-deps chromium
       - run: npm run test:smoke
+      - run: npx allure generate ./allure-results -o ./allure-report --clean
+        if: ${{ !cancelled() }}
       - uses: actions/upload-artifact@v5
         if: ${{ !cancelled() }}
         with:
@@ -47,4 +49,10 @@ jobs:
           path: |
             playwright-report/
             test-results/
+          retention-days: 7
+      - uses: actions/upload-artifact@v5
+        if: ${{ !cancelled() }}
+        with:
+          name: allure-report
+          path: allure-report
           retention-days: 7
