@@ -3,4 +3,7 @@ export const ROUTES = {
   dashboard: '/web/index.php/dashboard/index',
   pimList: '/web/index.php/pim/viewEmployeeList',
   addEmployee: '/web/index.php/pim/addEmployee',
+
+  //employmentStatus: '/web/index.php/admin/employmentStatus',
+  saveEmploymentStatus: '/web/index.php/admin/saveEmploymentStatus',
 } as const;

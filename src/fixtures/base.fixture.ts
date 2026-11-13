@@ -7,6 +7,7 @@ import { ToastComponent } from '@components/toast.component';
 import { AddEmployeePage } from '@pages/add-employee.page';
 import { Employee } from '@app-types/employee.types';
 import { createEmployee } from '@data/factories/employee.factory';
+import { AddEmploymentStatusPage } from '@pages/add-employment-status.page';
 
 type Fixtures = {
   loginPage: LoginPage;
@@ -15,7 +16,9 @@ type Fixtures = {
   topBar: TopBarComponent;
   toast: ToastComponent;
   addEmployeePage: AddEmployeePage;
-  employee : Employee;
+  employee: Employee;
+
+  addEmploymentStatusPage: AddEmploymentStatusPage;
 };
 
 export const test = base.extend<Fixtures>({
@@ -35,17 +38,19 @@ export const test = base.extend<Fixtures>({
     await use(new ToastComponent(page));
   },
 
-  addEmployeePage : async ({ page }, use) => {
+  addEmployeePage: async ({ page }, use) => {
     await use(new AddEmployeePage(page));
   },
-  employee : async ({addEmployeePage, page}, use) =>
-  {
+  employee: async ({ addEmployeePage, page }, use) => {
     await addEmployeePage.goto();
     const employee = await addEmployeePage.addEmployee(createEmployee());
-    await page.waitForURL(/viewPersonalDetails/)
+    await page.waitForURL(/viewPersonalDetails/);
     await use(employee);
-  }
+  },
 
+  addEmploymentStatusPage: async ({ page }, use) => {
+    await use(new AddEmploymentStatusPage(page));
+  },
 });
 
 export { expect } from '@playwright/test';
