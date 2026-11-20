@@ -8,6 +8,8 @@ import { AddEmployeePage } from '@pages/add-employee.page';
 import { Employee } from '@app-types/employee.types';
 import { createEmployee } from '@data/factories/employee.factory';
 import { AddEmploymentStatusPage } from '@pages/add-employment-status.page';
+import { EmployeeListPage } from '@pages/employee-list.page';
+import { PersonalDetailsPage } from '@pages/personal-details.page';
 
 type Fixtures = {
   loginPage: LoginPage;
@@ -17,8 +19,9 @@ type Fixtures = {
   toast: ToastComponent;
   addEmployeePage: AddEmployeePage;
   employee: Employee;
-
   addEmploymentStatusPage: AddEmploymentStatusPage;
+  employeeListPage: EmployeeListPage;
+  personalDetailsPage: PersonalDetailsPage;
 };
 
 export const test = base.extend<Fixtures>({
@@ -50,6 +53,12 @@ export const test = base.extend<Fixtures>({
 
   addEmploymentStatusPage: async ({ page }, use) => {
     await use(new AddEmploymentStatusPage(page));
+  },
+  employeeListPage: async ({ page }, use) => {
+    await use(new EmployeeListPage(page));
+  },
+  personalDetailsPage: async ({ page }, use) => {
+    await use(new PersonalDetailsPage(page));
   },
 });
 
