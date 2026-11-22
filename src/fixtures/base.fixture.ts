@@ -6,7 +6,7 @@ import { TopBarComponent } from '@components/topbar.component';
 import { ToastComponent } from '@components/toast.component';
 import { AddEmployeePage } from '@pages/add-employee.page';
 import { Employee } from '@app-types/employee.types';
-import { createEmployee } from '@data/factories/employee.factory';
+import { createEmployee, createEmployeeId } from '@data/factories/employee.factory';
 import { AddEmploymentStatusPage } from '@pages/add-employment-status.page';
 import { EmployeeListPage } from '@pages/employee-list.page';
 import { PersonalDetailsPage } from '@pages/personal-details.page';
@@ -46,7 +46,7 @@ export const test = base.extend<Fixtures>({
   },
   employee: async ({ addEmployeePage, page }, use) => {
     await addEmployeePage.goto();
-    const employee = await addEmployeePage.addEmployee(createEmployee());
+    const employee = await addEmployeePage.addEmployee(createEmployee(), createEmployeeId());
     await page.waitForURL(/viewPersonalDetails/);
     await use(employee);
   },
