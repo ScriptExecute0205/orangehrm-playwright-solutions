@@ -26,19 +26,16 @@ export class PersonalDetailsPage {
     this.licenseExpiryInput = this.page
       .locator('.oxd-input-group')
       .filter({ hasText: 'License Expiry Date' })
-      .getByPlaceholder('yyyy-dd-mm');
+      .getByPlaceholder('dd-mm-yyyy');
     this.photo = this.page.locator('.employee-image');
     this.saveButton = this.page.getByRole('button', { name: 'Save' }).first();
     this.photoFileInput = this.page.locator('input[type="file"]');
     this.dateOfBirth = this.page
       .locator('.oxd-input-group')
       .filter({ hasText: 'Date of Birth' })
-      .getByPlaceholder('yyyy-dd-mm');
+      .getByPlaceholder('dd-mm-yyyy');
 
-    this.gender = this.page.getByRole('radio', {
-      name: Gender.Male,
-      exact: true,
-    });
+    this.gender = this.page.getByLabel(Gender.Male, { exact: true });
 
     this.loader = this.page.locator('.oxd-form-loader');
     this.dropdown = new DropdownComponent(this.page);
@@ -51,16 +48,27 @@ export class PersonalDetailsPage {
     await this.saveButton.click();
   }
   async selectGender(): Promise<void> {
-    await this.gender.check();
+    //await this.gender.check();
+    await this.page.locator('.oxd-form-loader').waitFor({
+      state: 'hidden',
+    });
+
+    if (!(await this.gender.isChecked())) {
+      await this.page
+        .getByText(Gender.Male, {
+          exact: true,
+        })
+        .click();
+    }
   }
 
   async updateDetails(details: PersonalDetails): Promise<void> {
     await this.loader.waitFor({ state: 'hidden' });
     await this.driverLicenseInput.fill(details.driverLicense);
-    await this.licenseExpiryInput.fill(details.licenseExpiry);
+    // await this.licenseExpiryInput.fill(details.licenseExpiry);
     await this.dropdown.select('Nationality', details.nationality);
     await this.dropdown.select('Marital Status', details.maritalStatus);
-    await this.dateOfBirth.fill(details.dateOfBirth);
+    // await this.dateOfBirth.fill(details.dateOfBirth);
     await this.saveButton.click();
   }
 

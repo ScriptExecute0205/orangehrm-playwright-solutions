@@ -1,6 +1,5 @@
 import { BasePage } from './base.page';
 import { ROUTES } from '@constants/routes';
-import { MESSAGES } from '@constants/messages';
 import { Locator } from '@playwright/test';
 
 export class EmployeeListPage extends BasePage {
