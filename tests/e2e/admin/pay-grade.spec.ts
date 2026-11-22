@@ -1,5 +1,5 @@
 import { test, expect } from '@fixtures/index';
-import { MESSAGES } from '@constants/messages';
+//import { MESSAGES } from '@constants/messages';
 import { createNamedItem } from '@data/factories/named-item.factory';
 
 test.describe('Admin- PayGrade', () => {
@@ -9,7 +9,6 @@ test.describe.configure({ mode: 'serial' });
 
   test('PagGrade-01: add a new paygrade @regression', async ({
     addPayGradePage,
-    toast,
     page,
   }) => {
     await addPayGradePage.goto();
@@ -23,5 +22,3 @@ test.describe.configure({ mode: 'serial' });
 
 })
 
-
-});
