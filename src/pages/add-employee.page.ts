@@ -13,10 +13,10 @@ export class AddEmployeePage extends BasePage {
     .locator('input');
   readonly saveButton = this.page.getByRole('button', { name: 'Save' });
 
-  async addEmployee({ firstName, lastName }: NewEmployee, employeeId: string): Promise<Employee> {
+  async addEmployee({ firstName, lastName }: NewEmployee): Promise<Employee> {
     await this.firstNameInput.fill(firstName);
     await this.lastNameInput.fill(lastName);
-    await this.employeeInput.fill(employeeId);
+    const employeeId = await this.employeeInput.inputValue();
     await this.saveButton.click();
     return { firstName, lastName, employeeId };
   }
