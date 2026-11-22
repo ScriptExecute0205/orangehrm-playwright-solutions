@@ -6,8 +6,9 @@ import { TopBarComponent } from '@components/topbar.component';
 import { ToastComponent } from '@components/toast.component';
 import { AddEmployeePage } from '@pages/add-employee.page';
 import { Employee } from '@app-types/employee.types';
-import { createEmployee, createEmployeeId } from '@data/factories/employee.factory';
-import { AddEmploymentStatusPage } from '@pages/add-employment-status.page';
+import { createEmployee } from '@data/factories/employee.factory';
+import { AddEmployeeStatusPage } from '@pages/add-employee-status.page';
+import { AddJobTitlePage } from '@pages/add-job-titles.page';
 import { EmployeeListPage } from '@pages/employee-list.page';
 import { PersonalDetailsPage } from '@pages/personal-details.page';
 
@@ -18,10 +19,11 @@ type Fixtures = {
   topBar: TopBarComponent;
   toast: ToastComponent;
   addEmployeePage: AddEmployeePage;
-  employee: Employee;
-  addEmploymentStatusPage: AddEmploymentStatusPage;
-  employeeListPage: EmployeeListPage;
-  personalDetailsPage: PersonalDetailsPage;
+  employee : Employee;
+  addEmploymentStatusPage : AddEmployeeStatusPage;
+  addJobTitlePage : AddJobTitlePage;
+  employeeListPage : EmployeeListPage;
+  personalDetailsPage : PersonalDetailsPage;
 };
 
 export const test = base.extend<Fixtures>({
@@ -40,26 +42,32 @@ export const test = base.extend<Fixtures>({
   toast: async ({ page }, use) => {
     await use(new ToastComponent(page));
   },
-
-  addEmployeePage: async ({ page }, use) => {
+  
+  addEmployeePage : async ({ page }, use) => {
     await use(new AddEmployeePage(page));
   },
-  employee: async ({ addEmployeePage, page }, use) => {
+  employee : async ({addEmployeePage, page}, use) =>
+  {
     await addEmployeePage.goto();
-    const employee = await addEmployeePage.addEmployee(createEmployee(), createEmployeeId());
-    await page.waitForURL(/viewPersonalDetails/);
+    const employee = await addEmployeePage.addEmployee(createEmployee());
+    await page.waitForURL(/viewPersonalDetails/)
     await use(employee);
   },
-
-  addEmploymentStatusPage: async ({ page }, use) => {
-    await use(new AddEmploymentStatusPage(page));
+  addEmploymentStatusPage : async ({ page }, use) => {
+    await use(new AddEmployeeStatusPage(page));
   },
-  employeeListPage: async ({ page }, use) => {
+  addJobTitlePage : async ({ page }, use) => {
+    await use(new AddJobTitlePage(page));
+  },
+  employeeListPage : async ({ page }, use) => {
     await use(new EmployeeListPage(page));
   },
-  personalDetailsPage: async ({ page }, use) => {
+  personalDetailsPage : async ({ page }, use) => {
     await use(new PersonalDetailsPage(page));
   },
+  
+  
+
 });
 
 export { expect } from '@playwright/test';
