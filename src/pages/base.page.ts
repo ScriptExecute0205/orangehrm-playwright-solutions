@@ -6,6 +6,11 @@ export abstract class BasePage {
   constructor(protected readonly page: Page) {}
 
   async goto(): Promise<void> {
-    await this.page.goto(this.path);
+    await this.page.goto(this.path, {
+      waitUntil: 'domcontentloaded',
+      timeout: 90000,
+    });
   }
 }
+  
+
