@@ -6,3 +6,4 @@ export const createEmployee = (overrides: Partial<NewEmployee> = {}): NewEmploye
   lastName: faker.person.lastName(),
   ...overrides,
 });
+export const createEmployeeId = (): string => faker.string.numeric(6);
