@@ -18,21 +18,5 @@ export class AddPayGradePage extends BasePage {
     await this.submitBtn.click();
   }
 
-async searchpaygradeByName(paygradename: string): Promise<void> {
-    await this.employeeNameInput.fill(paygradename);
-    await this.page.getByRole('option').filter({ hasText: paygradename }).first().click();
-    await this.searchButton.click();
-  }
-
-  
-
-  async deletePaygrade(employeeId: string): Promise<void> {
-    await this.rowFor(employeeId)
-      .getByRole('button')
-      .filter({ has: this.page.locator('.bi-trash') })
-      .click();
-    await this.confirmButton.click();
-  }
-
 
 }
