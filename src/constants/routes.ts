@@ -4,6 +4,10 @@ export const ROUTES = {
   pimList: '/web/index.php/pim/viewEmployeeList',
   addEmployee: '/web/index.php/pim/addEmployee',
 
+  //added for paygrade feature
+  payGradesList:'/web/index.php/admin/viewPayGrades',
+  addpayGrade : 'web/index.php/admin/payGrade',
+
   // Employment Status
   // employmentStatus: '/web/index.php/admin/employmentStatus',
   saveEmploymentStatus: '/web/index.php/admin/saveEmploymentStatus',
