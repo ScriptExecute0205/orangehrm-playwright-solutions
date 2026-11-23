@@ -10,6 +10,7 @@ import { createEmployee, createEmployeeId } from '@data/factories/employee.facto
 import { AddEmploymentStatusPage } from '@pages/add-employment-status.page';
 import { EmployeeListPage } from '@pages/employee-list.page';
 import { PersonalDetailsPage } from '@pages/personal-details.page';
+import { AddJobTitlePage } from '@pages/jobTitle.page';
 
 type Fixtures = {
   loginPage: LoginPage;
@@ -22,6 +23,7 @@ type Fixtures = {
   addEmploymentStatusPage: AddEmploymentStatusPage;
   employeeListPage: EmployeeListPage;
   personalDetailsPage: PersonalDetailsPage;
+  addJobTitlePage: AddJobTitlePage;
 };
 
 export const test = base.extend<Fixtures>({
@@ -60,6 +62,10 @@ export const test = base.extend<Fixtures>({
   personalDetailsPage: async ({ page }, use) => {
     await use(new PersonalDetailsPage(page));
   },
+  addJobTitlePage: async ({ page }, use) => {
+    await use(new AddJobTitlePage(page));
+  },
+  
 });
 
 export { expect } from '@playwright/test';
