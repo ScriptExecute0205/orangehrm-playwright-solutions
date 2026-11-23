@@ -63,9 +63,8 @@ export const test = base.extend<Fixtures>({
     await use(new PersonalDetailsPage(page));
   },
   addJobTitlePage: async ({ page }, use) => {
-    await use(new AddJobTitlePage(page));
-  },
-  
+    await use(new AddJobTitlePage(page));
+  },
 });
 
 export { expect } from '@playwright/test';
