@@ -3,8 +3,7 @@ import { ROUTES } from '@constants/routes';
 import { NamedItem } from '@app-types/named-item.types';
 
 export class AddJobCategoryPage extends BasePage {
-  readonly path = ROUTES.jobcategory
-;
+  readonly path = ROUTES.jobcategory;
 
   readonly addBtn = this.page.getByRole('button', { name: 'Add' });
 
