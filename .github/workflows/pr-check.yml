@@ -40,7 +40,7 @@ jobs:
       - run: npm ci
       - run: npx playwright install --with-deps chromium
       - run: npm run test:smoke
-      - run: npx allure generate ./allure-results -o ./allure-report --clean
+      - run: npx allure generate ./allure-results -o ./allure-report --clean ./allurerc.mjs
         if: ${{ !cancelled() }}
       - uses: actions/upload-artifact@v5
         if: ${{ !cancelled() }}
