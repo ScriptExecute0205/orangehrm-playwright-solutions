@@ -18,5 +18,7 @@ export class AddPayGradePage extends BasePage {
     await this.addBtn.click();
     await this.nameInput.fill(Name);
     await this.submitBtn.click();
+
+    
   }
 }

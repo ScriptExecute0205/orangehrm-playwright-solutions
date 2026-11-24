@@ -5,6 +5,8 @@ export const ROUTES = {
   addEmployee: '/web/index.php/pim/addEmployee',
   paygrade:'/web/index.php/admin/viewPayGrades',
   addpaygrade:'/web/index.php/admin/payGrade',
+  jobcategory:'/web/index.php/admin/jobCategory',
+  addjobcategory:'/web/index.php/admin/saveJobCategory',
   
   // Employment Status
   // employmentStatus: '/web/index.php/admin/employmentStatus',

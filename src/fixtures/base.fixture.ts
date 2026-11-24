@@ -11,6 +11,7 @@ import { AddEmploymentStatusPage } from '@pages/add-employment-status.page';
 import { EmployeeListPage } from '@pages/employee-list.page';
 import { PersonalDetailsPage } from '@pages/personal-details.page';
 import { AddPayGradePage } from '@pages/paygrade.page';
+import { AddJobCategoryPage } from '@pages/addjobcategory.page';
 
 
 type Fixtures = {
@@ -25,6 +26,7 @@ type Fixtures = {
   employeeListPage: EmployeeListPage;
   personalDetailsPage: PersonalDetailsPage;
   addPayGradePage: AddPayGradePage;
+  addJobCategoryPage: AddJobCategoryPage;
 
 };
 
@@ -66,6 +68,10 @@ export const test = base.extend<Fixtures>({
   },
   addPayGradePage: async ({ page }, use) => {
     await use(new AddPayGradePage(page));
+  },
+
+  addJobCategoryPage: async ({ page }, use) => {
+    await use(new AddJobCategoryPage(page));
   },
 });
 
