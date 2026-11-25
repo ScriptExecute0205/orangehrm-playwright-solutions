@@ -76,7 +76,7 @@ jobs:
           pattern: allure-results-*
           path: allure-results-all
           merge-multiple: true
-      - run: npx allure generate ./allure-results-all -o ./allure-report --clean ./allurerc.mjs
+      - run: npx allure generate ./allure-results-all -o ./allure-report --clean --config ./allurerc.mjs
       - uses: actions/upload-pages-artifact@v4
         with:
           path: allure-report
