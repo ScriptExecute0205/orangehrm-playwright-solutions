@@ -10,5 +10,8 @@
     "**/test-results": true,
     "**/playwright-report": true,
     "**/allure-results": true
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
   }
 }

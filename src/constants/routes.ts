@@ -9,4 +9,6 @@ export const ROUTES = {
   // Employment Status
   // employmentStatus: '/web/index.php/admin/employmentStatus',
   saveEmploymentStatus: '/web/index.php/admin/saveEmploymentStatus',
+
+  addPayGrade : '/web/index.php/admin/payGrade'
 } as const;
