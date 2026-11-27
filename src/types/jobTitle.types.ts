@@ -1,6 +1,4 @@
-export interface jobTitle
-{
-
-    title : string;
-    description : string;
+export interface jobTitle {
+    title: string;
+    description: string;
 }
